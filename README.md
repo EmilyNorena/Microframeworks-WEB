@@ -113,8 +113,14 @@ En tu navegador busca http://localhost:35000
 
 ## Diagrama de clases
 
+<img width="1327" height="575" alt="image" src="https://github.com/user-attachments/assets/599d0b5a-7a75-45f1-ab9e-b43e88b52424" />
 
-
+### Relaciones entre clases
+- WebServer -> ServerSocket: La clase WebServer utiliza ServerSocket para escuchar conexiones entrantes de clientes en un puerto específico.
+- WebServer -> RequestHandler: Por cada cliente que se conecta, WebServer crea un objeto RequestHandler. RequestHandler depende de WebServer para su creación, pero no forma parte permanente del WebServer.
+- RequestHandler -> FileHanlder: RequestHandler utiliza FileHandler para servir archivos estáticos solicitados por el cliente.
+- RequestHandler -> ApiHandler: RequestHandler utiliza ApiHandler para procesar solicitudes a endpoints de la API.
+  
 ---
 
 ## Pruebas
