@@ -73,3 +73,38 @@ En tu navegador busca http://localhost:35000/index.html
 
 <img width="1907" height="1006" alt="captura 1" src="https://github.com/user-attachments/assets/2e527148-1f25-4f6b-aafc-8a12bbaa3eae" />
 
+---
+
+## Arquitectura
+<img width="860" height="746" alt="image" src="https://github.com/user-attachments/assets/98565b94-b48e-498c-a8dc-3118c373272b" />
+
+1. WebServer: 
+   
+   - Inicializa el servidor en el puerto 35000.
+   - Acepta conexiones entrantes con ServerSocket.
+   - Procesa una sola conexión a la vez.
+   - Delega la solicitud entrante RequestHandler.
+   - Permite detener el servidor de forma controlada.
+  
+     
+2. RequestHandler: 
+   
+   - Recibe el Socket de un cliente y gestiona su ciclo de vida.
+   - Lee y parsea la petición HTTP (método, ruta, headers, query params).
+   - Determina si la solicitud es de tipo estática (archivos) o dinámica (API).
+   - Genera y enviar la respuesta HTTP al cliente.
+  
+3. FileHandler
+
+   - Localiza archivos en el directorio /public.
+   - Protege contra ataques directory traversal.
+   - Determina el Content-Type según la extensión.
+   - Sirve contenido texto (HTML, CSS, JS) o binario (imágenes).
+   - Maneja errores como 404 Not Found o 403 Forbidden.
+
+4. ApiHandler
+
+   - Procesa peticiones dirigidas a rutas /api/.
+   - Enruta según el path y el método HTTP (GET, POST).
+   - Lee query params.
+   - Genera respuestas JSON.
