@@ -4,7 +4,6 @@
 **Autora:** Emily Noreña Cardozo  
 **Fecha:** 18 de agosto de 2025  
 
----
 
 ## Taller  
 **Diseño y estructuración de aplicaciones distribuidas en Internet**  
@@ -35,6 +34,12 @@ Este proyecto implementa un servidor web en Java, utilizando únicamente librer�
         styles.css
 </pre>
 
+---
+
 ## ¿Cómo ejecutar?
 Para correr el proyecto localmente, debes tener instalado:
-1. Java (versión 17)
+1. Java (versión 17 https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html). Puedes verificar la versión ejecutando en la terminal: <pre> java -version </pre>
+2. Maven (https://maven.apache.org/download.cgi). Puedes verificar la versión ejecutando en la terminal: <pre> mvn -v </pre>
+3. Git (https://git-scm.com/downloads). Puedes verificar la versión ejecutando en la terminal: <pre> git --version </pre>
+
+Posterior a esto, es necesario clonar el repositorio de la siguiente manera:
