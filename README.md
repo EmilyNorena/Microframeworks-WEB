@@ -73,6 +73,16 @@ En tu navegador busca http://localhost:35000
 
 <img width="1907" height="1006" alt="captura 1" src="https://github.com/user-attachments/assets/2e527148-1f25-4f6b-aafc-8a12bbaa3eae" />
 
+
+
+Si buscas un recurso inexistente, verás esta página
+
+
+
+<img width="1917" height="1008" alt="image" src="https://github.com/user-attachments/assets/e739b23c-83f0-4494-8e91-52fe42c83200" />
+
+
+
 ---
 
 ## Arquitectura
