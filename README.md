@@ -126,17 +126,23 @@ En tu navegador busca http://localhost:35000
 ## Pruebas
 <img width="1246" height="202" alt="image" src="https://github.com/user-attachments/assets/855b8839-2579-4c1b-a861-4bfbca8dd5e2" />
 
-1. shouldLoadStaticFileHtml: Verifica que el servidor retorne código 200 (OK) al solicitar un archivo HTML existente (index.html).
-2. notShouldLoadStaticFileHtml: Confirma que el servidor retorne 404 (No encontrado) al solicitar un archivo HTML inexistente.
-3. shouldLoadStaticFileCss: Comprueba que el servidor sirve correctamente archivos CSS existentes (código 200).
-4. notShouldLoadStaticFileCss: Valida el manejo de archivos CSS inexistentes (código 404).
-5. shouldLoadStaticFileJs: Testea la correcta entrega de archivos JavaScript existentes.
-6. notShouldLoadStaticFileJs: Verifica el comportamiento con archivos JS que no existen.
-7. shouldLoadStaticImagePNG: Confirma que el servidor puede servir imágenes PNG existentes.
-8. shouldLoadStaticImageJPG: Similar a la anterior pero para imágenes JPG/JPEG.
-9. notShouldLoadStaticImagePNG: Valida el código 404 para imágenes PNG inexistentes.
-10. notShouldLoadStaticImageJPG: Igual que la anterior pero para formato JPG.
-11. shouldLoadRestGet: Prueba un endpoint REST con método GET, esperando respuesta exitosa (200).
-12. shouldLoadRestPost: Verifica el comportamiento de un endpoint REST con método POST, esperando respuesta exitosa (200).
+1. <pre>shouldLoadStaticFileHtml</pre> Verifica que el servidor retorne código 200 (OK) al solicitar un archivo HTML existente (index.html).
+
+2. <pre>notShouldLoadStaticFileHtml</pre> Confirma que el servidor retorne 404 (No encontrado) al solicitar un archivo HTML inexistente.
+
+3. <pre>shouldLoadStaticFileCss </pre> Comprueba que el servidor sirve correctamente archivos CSS existentes (código 200).
+
+4. <pre> notShouldLoadStaticFileCss </pre> Valida el manejo de archivos CSS inexistentes (código 404).
+
+5. <pre> shouldLoadStaticFileJs </pre> Testea la correcta entrega de archivos JavaScript existentes.
+
+6. <pre> notShouldLoadStaticFileJs </pre> Verifica el comportamiento con archivos JS que no existen.
+
+7. <pre> shouldLoadStaticImagePNG </pre> Confirma que el servidor puede servir imágenes PNG existentes.
+8. <pre> shouldLoadStaticImageJPG </pre> Similar a la anterior pero para imágenes JPG/JPEG.
+9. <pre> notShouldLoadStaticImagePNG </pre> Valida el código 404 para imágenes PNG inexistentes.
+10. <pre> notShouldLoadStaticImageJPG </pre> Igual que la anterior pero para formato JPG.
+11. <pre> shouldLoadRestGet </pre> Prueba un endpoint REST con método GET, esperando respuesta exitosa (200).
+12. <pre>shouldLoadRestPost </pre> Verifica el comportamiento de un endpoint REST con método POST, esperando respuesta exitosa (200).
 
 
