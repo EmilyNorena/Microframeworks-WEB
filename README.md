@@ -68,7 +68,7 @@ El último número de la línea corresponde al PID del proceso.
 ---
 
 ## ¿Qué debes ver?
-En tu navegador busca http://localhost:35000/index.html
+En tu navegador busca http://localhost:35000
 
 
 <img width="1907" height="1006" alt="captura 1" src="https://github.com/user-attachments/assets/2e527148-1f25-4f6b-aafc-8a12bbaa3eae" />
@@ -108,3 +108,13 @@ En tu navegador busca http://localhost:35000/index.html
    - Enruta según el path y el método HTTP (GET, POST).
    - Lee query params.
    - Genera respuestas JSON.
+
+---
+
+## Diagrama de clases
+
+
+
+---
+
+## Pruebas
