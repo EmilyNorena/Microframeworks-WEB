@@ -1,12 +1,12 @@
-#  🌐Servidor Web en Java  
+#  🌐Microframeworks WEB  
 
 ### Arquitectura Empresarial  
 **Autora:** Emily Noreña Cardozo  
-**Fecha:** 18 de agosto de 2025  
+**Fecha:** 24 de agosto de 2025  
 
 
 ## Taller  
-**Diseño y estructuración de aplicaciones distribuidas en Internet**  
+**Desarrollo de un Framework Web para Servicios REST y Gestión de Archivos Estáticos**  
 
 ---
 
@@ -14,8 +14,10 @@
 Este proyecto implementa un servidor web en Java, utilizando únicamente librerías. El servidor cumple con las siguientes características: 
 
 - Atiende múltiples solicitudes seguidas de forma no concurrente.  
-- Lee y sirve archivos del disco local (HTML, CSS, JS e IMG).
-- Comunicación asíncrona con servicios REST (métodos GET y POST).  
+- Archivos estáticos (HTML, CSS, JS, imágenes) servidos desde un directorio configurable.
+- Comunicación asíncrona con servicios REST (métodos GET y POST).
+- Rutas REST dinámicas mediante expresiones lambda.
+- Manejo de parámetros de consulta (query params) en las solicitudes.
 
 ---
 
@@ -24,8 +26,13 @@ Este proyecto implementa un servidor web en Java, utilizando únicamente librer�
 ├───httpserver
 │       ApiHandler.java
 │       FileHandler.java
+        Response.java
+        Request.java
 │       RequestHandler.java
+        Route.java
+        Router.java
 │       WebServer.java
+        
 │
 └───public
         img.png
