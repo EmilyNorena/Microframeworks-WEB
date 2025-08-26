@@ -130,27 +130,30 @@ De esta forma, el servidor puede manejar tanto contenido estático (HTML, CSS, J
 
 1. WebServer: 
    
-   - Inicializa el servidor en el puerto 35000.
+   - Inicializa el servidor en el puerto 8080.
    - Acepta conexiones entrantes con ServerSocket.
    - Procesa una sola conexión a la vez.
    - Delega la solicitud entrante RequestHandler.
    - Permite detener el servidor de forma controlada.
+   - Permite definir un directorio base con staticfiles(String path)
+   - Registra rutas dinámicas
   
      
 2. RequestHandler: 
    
    - Recibe el Socket de un cliente y gestiona su ciclo de vida.
-   - Lee y parsea la petición HTTP (método, ruta, headers, query params).
+   - Lee y parsea la petición HTTP (método, path, headers, query params).
    - Determina si la solicitud es de tipo estática (archivos) o dinámica (API).
-   - Genera y enviar la respuesta HTTP al cliente.
+   - Crea Request para encapsular path y query params.
+   - Usa Response para configurar status code, headers y body antes de enviarlo al cliente.
   
 3. FileHandler
 
-   - Localiza archivos en el directorio /public.
+   - Localiza archivos en el directorio establecido.
    - Protege contra ataques directory traversal.
    - Determina el Content-Type según la extensión.
-   - Sirve contenido texto (HTML, CSS, JS) o binario (imágenes).
-   - Maneja errores como 404 Not Found o 403 Forbidden.
+   - Sirve contenido texto (HTML, CSS, JS) con UTF-8 o binario (imágenes).
+   - Maneja errores como 404 Not Found.
 
 4. ApiHandler
 
@@ -158,6 +161,29 @@ De esta forma, el servidor puede manejar tanto contenido estático (HTML, CSS, J
    - Enruta según el path y el método HTTP (GET, POST).
    - Lee query params.
    - Genera respuestas JSON.
+
+5. Router
+
+   - Permite registrar y buscar rutas dinámicas.
+   - Implementa un mecanismo de búsqueda de rutas según el path solicitado.
+
+6. Route (Interfaz funcional)
+
+   - Cualquier ruta debe implementar handle(Request, Response).
+   - Usa funciones lambda.
+   - Asegura que cada ruta pueda acceder tanto a la petición como a la respuesta.
+  
+7. Request
+
+   - Representa una petición HTTP
+   - Separa el path de los parámetros de consulta (query params).
+   
+8. Response
+
+   - Encapsula todos los detalles de la respuesta HTTP: código de estado, cabeceras y cuerpo.
+   - Soporta tanto respuestas de texto como binarias (HTML e imágenes).
+   - Es responsable de formatear y enviar la respuesta completa al cliente siguiendo el protocolo HTTP.
+
 
 ---
 
