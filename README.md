@@ -1,12 +1,12 @@
-#  🌐Servidor Web en Java  
+#  🌐Microframeworks WEB  
 
 ### Arquitectura Empresarial  
 **Autora:** Emily Noreña Cardozo  
-**Fecha:** 18 de agosto de 2025  
+**Fecha:** 24 de agosto de 2025  
 
 
 ## Taller  
-**Diseño y estructuración de aplicaciones distribuidas en Internet**  
+**Desarrollo de un Framework Web para Servicios REST y Gestión de Archivos Estáticos**  
 
 ---
 
@@ -14,24 +14,46 @@
 Este proyecto implementa un servidor web en Java, utilizando únicamente librerías. El servidor cumple con las siguientes características: 
 
 - Atiende múltiples solicitudes seguidas de forma no concurrente.  
-- Lee y sirve archivos del disco local (HTML, CSS, JS e IMG).
-- Comunicación asíncrona con servicios REST (métodos GET y POST).  
+- Archivos estáticos (HTML, CSS, JS, imágenes) servidos desde un directorio configurable.
+- Comunicación asíncrona con servicios REST (métodos GET y POST).
+- Rutas REST dinámicas mediante expresiones lambda.
+- Manejo de parámetros de consulta (query params) en las solicitudes.
 
 ---
 
 ## Scaffolding
 <pre> 
-├───httpserver
-│       ApiHandler.java
-│       FileHandler.java
-│       RequestHandler.java
-│       WebServer.java
+src        
+├───main
+│   ├───java
+│   │   └───com
+│   │       └───mycompany
+│   │           └───httpserver
+│   │                   ApiHandler.java
+│   │                   FileHandler.java
+│   │                   Request.java
+│   │                   RequestHandler.java
+│   │                   Response.java
+│   │                   Route.java
+│   │                   Router.java
+│   │                   WebServer.java
+│   │
+│   └───resources
+│       └───webroot
+│               404.html
+│               favicon.ico
+│               img.png
+│               index.html
+│               koala.jpg
+│               script.js
+│               styles.css
 │
-└───public
-        img.png
-        index.html
-        script.js
-        styles.css
+└───test
+    └───java
+        └───com
+            └───mycompany
+                └───httpserver
+                        WebServerTest.java
 </pre>
 
 ---
@@ -43,35 +65,35 @@ Para correr el proyecto localmente, debes tener instalado:
 3. Git (https://git-scm.com/downloads). Puedes verificar la versión ejecutando en la terminal: <pre> git --version </pre>
 
 Posterior a esto, es necesario clonar el repositorio de la siguiente manera:
-<pre> git clone https://github.com/EmilyNorena/Servidor-web-Java.git </pre>
+<pre> https://github.com/EmilyNorena/Microframeworks-WEB.git </pre>
 
 Finalmente, sigue estos pasos:
 1. Dirígete a la carpeta que con tiene el archivo pom.xml: <pre>cd httpserver</pre>
 2. Construye el proyecto: <pre>mvn clean package</pre>
    La salida debe ser BUILD SUCCESS.
 4. Ejecuta la aplicación: <pre> java -cp target/classes com.mycompany.httpserver.WebServer </pre>
-   La consola debe mostrar el siguiente mensaje: Server started on port 35000.
+   La consola debe mostrar el siguiente mensaje: Server started on port 8080.
 
 ---
 
-## ¿Cómo finalizar un proceso que está utilizando el puerto 35000?
+## ¿Cómo finalizar un proceso que está utilizando el puerto 8080?
 ### En Windows
-1. Identifica el proceso que ocupa el puerto: <pre> netstat -ano | findstr :35000 </pre>
+1. Identifica el proceso que ocupa el puerto: <pre> netstat -ano | findstr :8080 </pre>
 El último número de la línea corresponde al PID del proceso.
    
-2. Finaliza el proceso con el PID: <pre> taskkill /PID <PID> /F </pre>
+2. Finaliza el proceso con el PID: <pre> taskkill /PID PID /F </pre>
 
 ### En Linux
-1. Identifica el proceso que ocupa el puerto: <pre> lsof -i :35000 </pre>
-2. kill -9 <PID>
+1. Identifica el proceso que ocupa el puerto: <pre> lsof -i :8080 </pre>
+2. <pre> kill -9 PID </pre>
 
 ---
 
 ## ¿Qué debes ver?
-En tu navegador busca http://localhost:35000
+En tu navegador busca http://localhost:8080
 
 
-<img width="1907" height="1006" alt="captura 1" src="https://github.com/user-attachments/assets/2e527148-1f25-4f6b-aafc-8a12bbaa3eae" />
+<img width="1907" height="1011" alt="image" src="https://github.com/user-attachments/assets/1efe09d8-82b9-407b-818f-9d43ca7bd77d" />
 
 
 
@@ -79,38 +101,59 @@ Si buscas un recurso inexistente, verás esta página
 
 
 
-<img width="1917" height="1008" alt="image" src="https://github.com/user-attachments/assets/e739b23c-83f0-4494-8e91-52fe42c83200" />
-
-
+<img width="1907" height="919" alt="image" src="https://github.com/user-attachments/assets/1a3c89f6-2973-4dea-a9d9-d1dfa5ff6bd0" />
 
 ---
+
+## Ejemplo de uso
+Cómo un Desarrollador Web puede usar el Framework
+
+<img width="700" height="121" alt="image" src="https://github.com/user-attachments/assets/4684408a-68ae-4454-8694-1345416826a0" />
+
+Este fragmento de código configura un servidor web en Java con soporte para archivos estáticos y servicios REST. 
+- Los archivos estáticos se sirven desde la carpeta target/classes/webroot (o desde la ruta definida en staticFilesPath).
+- Se exponen endpoints REST con el método GET a través de la clase Router:
+    - /api/helloworld → retorna el texto fijo "hello world!".
+    - /api/hello?name=Pedro → retorna un saludo personalizado con el valor recibido por parámetro ("hello Pedro").
+    - /api/pi → retorna el valor numérico de π (3.141592653589793).
+
+De esta forma, el servidor puede manejar tanto contenido estático (HTML, CSS, JS) como peticiones dinámicas mediante endpoints REST.
+
+<img width="493" height="303" alt="image" src="https://github.com/user-attachments/assets/fd67dd6f-0c5d-4d1b-aefb-984b0f6c6fce" />
+<img width="505" height="303" alt="image" src="https://github.com/user-attachments/assets/2baa6d44-6ffc-4aaf-8a8a-c3898523e58e" />
+
+
+
 
 ## Arquitectura
 <img width="860" height="746" alt="image" src="https://github.com/user-attachments/assets/98565b94-b48e-498c-a8dc-3118c373272b" />
 
 1. WebServer: 
    
-   - Inicializa el servidor en el puerto 35000.
+   - Inicializa el servidor en el puerto 8080.
    - Acepta conexiones entrantes con ServerSocket.
    - Procesa una sola conexión a la vez.
    - Delega la solicitud entrante RequestHandler.
    - Permite detener el servidor de forma controlada.
+   - Permite definir un directorio base con staticfiles(String path)
+   - Registra rutas dinámicas
   
      
 2. RequestHandler: 
    
    - Recibe el Socket de un cliente y gestiona su ciclo de vida.
-   - Lee y parsea la petición HTTP (método, ruta, headers, query params).
+   - Lee y parsea la petición HTTP (método, path, headers, query params).
    - Determina si la solicitud es de tipo estática (archivos) o dinámica (API).
-   - Genera y enviar la respuesta HTTP al cliente.
+   - Crea Request para encapsular path y query params.
+   - Usa Response para configurar status code, headers y body antes de enviarlo al cliente.
   
 3. FileHandler
 
-   - Localiza archivos en el directorio /public.
+   - Localiza archivos en el directorio establecido.
    - Protege contra ataques directory traversal.
    - Determina el Content-Type según la extensión.
-   - Sirve contenido texto (HTML, CSS, JS) o binario (imágenes).
-   - Maneja errores como 404 Not Found o 403 Forbidden.
+   - Sirve contenido texto (HTML, CSS, JS) con UTF-8 o binario (imágenes).
+   - Maneja errores como 404 Not Found.
 
 4. ApiHandler
 
@@ -119,22 +162,51 @@ Si buscas un recurso inexistente, verás esta página
    - Lee query params.
    - Genera respuestas JSON.
 
+5. Router
+
+   - Permite registrar y buscar rutas dinámicas.
+   - Implementa un mecanismo de búsqueda de rutas según el path solicitado.
+
+6. Route (Interfaz funcional)
+
+   - Cualquier ruta debe implementar handle(Request, Response).
+   - Usa funciones lambda.
+   - Asegura que cada ruta pueda acceder tanto a la petición como a la respuesta.
+  
+7. Request
+
+   - Representa una petición HTTP
+   - Separa el path de los parámetros de consulta (query params).
+   
+8. Response
+
+   - Encapsula todos los detalles de la respuesta HTTP: código de estado, cabeceras y cuerpo.
+   - Soporta tanto respuestas de texto como binarias (HTML e imágenes).
+   - Es responsable de formatear y enviar la respuesta completa al cliente siguiendo el protocolo HTTP.
+
+
 ---
 
 ## Diagrama de clases
 
-<img width="1327" height="575" alt="image" src="https://github.com/user-attachments/assets/599d0b5a-7a75-45f1-ab9e-b43e88b52424" />
+<img width="1310" height="751" alt="image" src="https://github.com/user-attachments/assets/5c19ddf2-33ab-4171-ae68-878e08f08740" />
+
 
 ### Relaciones entre clases
 - WebServer -> ServerSocket: La clase WebServer utiliza ServerSocket para escuchar conexiones entrantes de clientes en un puerto específico.
 - WebServer -> RequestHandler: Por cada cliente que se conecta, WebServer crea un objeto RequestHandler. RequestHandler depende de WebServer para su creación, pero no forma parte permanente del WebServer.
-- RequestHandler -> FileHanlder: RequestHandler utiliza FileHandler para servir archivos estáticos solicitados por el cliente.
+- RequestHandler -> FileHandler: RequestHandler utiliza FileHandler para servir archivos estáticos solicitados por el cliente.
 - RequestHandler -> ApiHandler: RequestHandler utiliza ApiHandler para procesar solicitudes a endpoints de la API.
+- RequestHandler -> Request: RequestHandler crea un Request a partir de la petición y los parámetros definidos.
+- RequestHandler -> Response: RequestHandler inicializa un Response, el cual contiene código de estados, cabecera y cuerpo.
+- RequestHandler -> Router: RequestHandler consulta al Router para saber si existe un Route registrado para el path solicitado.
+- Router -> Route: Router mantiene un mapa de rutas y las asocia a objetos Route, que son funciones lambda.
   
 ---
 
 ## Pruebas
-<img width="1246" height="202" alt="image" src="https://github.com/user-attachments/assets/855b8839-2579-4c1b-a861-4bfbca8dd5e2" />
+<img width="800" height="262" alt="image" src="https://github.com/user-attachments/assets/270e8287-ab45-4dbb-839e-f1de3644f8e9" />
+
 
 1. <pre>shouldLoadStaticFileHtml</pre> Verifica que el servidor retorne código 200 (OK) al solicitar un archivo HTML existente (index.html).
 
@@ -149,10 +221,27 @@ Si buscas un recurso inexistente, verás esta página
 6. <pre> notShouldLoadStaticFileJs </pre> Verifica el comportamiento con archivos JS que no existen.
 
 7. <pre> shouldLoadStaticImagePNG </pre> Confirma que el servidor puede servir imágenes PNG existentes.
+
 8. <pre> shouldLoadStaticImageJPG </pre> Similar a la anterior pero para imágenes JPG/JPEG.
+
 9. <pre> notShouldLoadStaticImagePNG </pre> Valida el código 404 para imágenes PNG inexistentes.
+
 10. <pre> notShouldLoadStaticImageJPG </pre> Igual que la anterior pero para formato JPG.
+
 11. <pre> shouldLoadRestGet </pre> Prueba un endpoint REST con método GET, esperando respuesta exitosa (200).
+
 12. <pre>shouldLoadRestPost </pre> Verifica el comportamiento de un endpoint REST con método POST, esperando respuesta exitosa (200).
+
+13. <pre>shouldLoadHelloRouteWithQueryParam </pre> Verifica que el endpoint /api/hello con parámetro name=Pedro se cargue correctamente y devuelva estado 200 OK.
+
+14. <pre>shouldReturnCorrectResponseFromHelloRoute </pre> Comprueba que la respuesta del endpoint /api/hello?name=Pedro contenga el saludo personalizado "hello Pedro".
+
+15. <pre>shouldLoadPiRoute </pre> Valida que el endpoint /api/pi responda correctamente con estado 200 OK.
+
+16. <pre>shouldReturnCorrectValueFromPiRoute </pre> Verifica que la respuesta del endpoint /api/pi coincida exactamente con el valor de Math.PI.
+
+17. <pre>shouldServeStaticFileFromCustomDirectory </pre> Comprueba que se sirvan archivos estáticos desde el directorio configurado, por ejemplo index.html, devolviendo 200 OK.
+
+18. <pre>shouldReturn404ForUnregisteredRoute </pre> Asegura que cualquier ruta no registrada (como unknown/route) devuelva correctamente un error 404 Not Found.
 
 
