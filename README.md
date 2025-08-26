@@ -23,22 +23,37 @@ Este proyecto implementa un servidor web en Java, utilizando únicamente librer�
 
 ## Scaffolding
 <pre> 
-├───httpserver
-│       ApiHandler.java
-│       FileHandler.java
-        Response.java
-        Request.java
-        RequestHandler.java
-        Route.java
-        Router.java
-        WebServer.java
-|        
+src        
+├───main
+│   ├───java
+│   │   └───com
+│   │       └───mycompany
+│   │           └───httpserver
+│   │                   ApiHandler.java
+│   │                   FileHandler.java
+│   │                   Request.java
+│   │                   RequestHandler.java
+│   │                   Response.java
+│   │                   Route.java
+│   │                   Router.java
+│   │                   WebServer.java
+│   │
+│   └───resources
+│       └───webroot
+│               404.html
+│               favicon.ico
+│               img.png
+│               index.html
+│               koala.jpg
+│               script.js
+│               styles.css
 │
-└───public
-        img.png
-        index.html
-        script.js
-        styles.css
+└───test
+    └───java
+        └───com
+            └───mycompany
+                └───httpserver
+                        WebServerTest.java
 </pre>
 
 ---
@@ -75,10 +90,10 @@ El último número de la línea corresponde al PID del proceso.
 ---
 
 ## ¿Qué debes ver?
-En tu navegador busca http://localhost:35000
+En tu navegador busca http://localhost:8080
 
 
-<img width="1907" height="1006" alt="captura 1" src="https://github.com/user-attachments/assets/2e527148-1f25-4f6b-aafc-8a12bbaa3eae" />
+<img width="1907" height="1011" alt="image" src="https://github.com/user-attachments/assets/1efe09d8-82b9-407b-818f-9d43ca7bd77d" />
 
 
 
@@ -86,7 +101,7 @@ Si buscas un recurso inexistente, verás esta página
 
 
 
-<img width="1917" height="1008" alt="image" src="https://github.com/user-attachments/assets/e739b23c-83f0-4494-8e91-52fe42c83200" />
+<img width="1907" height="919" alt="image" src="https://github.com/user-attachments/assets/1a3c89f6-2973-4dea-a9d9-d1dfa5ff6bd0" />
 
 
 
@@ -141,7 +156,8 @@ Si buscas un recurso inexistente, verás esta página
 ---
 
 ## Pruebas
-<img width="1246" height="202" alt="image" src="https://github.com/user-attachments/assets/855b8839-2579-4c1b-a861-4bfbca8dd5e2" />
+<img width="800" height="262" alt="image" src="https://github.com/user-attachments/assets/270e8287-ab45-4dbb-839e-f1de3644f8e9" />
+
 
 1. <pre>shouldLoadStaticFileHtml</pre> Verifica que el servidor retorne código 200 (OK) al solicitar un archivo HTML existente (index.html).
 
@@ -156,10 +172,15 @@ Si buscas un recurso inexistente, verás esta página
 6. <pre> notShouldLoadStaticFileJs </pre> Verifica el comportamiento con archivos JS que no existen.
 
 7. <pre> shouldLoadStaticImagePNG </pre> Confirma que el servidor puede servir imágenes PNG existentes.
+
 8. <pre> shouldLoadStaticImageJPG </pre> Similar a la anterior pero para imágenes JPG/JPEG.
+
 9. <pre> notShouldLoadStaticImagePNG </pre> Valida el código 404 para imágenes PNG inexistentes.
+
 10. <pre> notShouldLoadStaticImageJPG </pre> Igual que la anterior pero para formato JPG.
+
 11. <pre> shouldLoadRestGet </pre> Prueba un endpoint REST con método GET, esperando respuesta exitosa (200).
+
 12. <pre>shouldLoadRestPost </pre> Verifica el comportamiento de un endpoint REST con método POST, esperando respuesta exitosa (200).
 
 
