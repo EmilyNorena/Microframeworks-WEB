@@ -1,4 +1,8 @@
-com\mycompany\httpserver\WebServer.class
 com\mycompany\httpserver\ApiHandler.class
+com\mycompany\httpserver\Request.class
+com\mycompany\httpserver\Response.class
+com\mycompany\httpserver\WebServer.class
 com\mycompany\httpserver\FileHandler.class
+com\mycompany\httpserver\Router.class
 com\mycompany\httpserver\RequestHandler.class
+com\mycompany\httpserver\Route.class

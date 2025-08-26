@@ -1,4 +1,5 @@
 package com.mycompany.httpserver;
+
 import java.io.*;
 import java.nio.file.*;
 
@@ -14,80 +15,34 @@ public class FileHandler {
         this.basePath = Paths.get(baseDirectory).toAbsolutePath().normalize();
     }
 
-    public void serveFile(String path, PrintWriter out, OutputStream rawOut) throws IOException {
-        try {
-            if (path.equals("/")) {
-                path = "/index.html"; // Default
-            }
-
-            Path filePath = resolveSafePath(path);
-
-            // Verificar si el archivo existe y es legible
-            if (!Files.exists(filePath) || !Files.isReadable(filePath)) {
-                handle404Error(out, rawOut);
-                return;
-            }
-
-            byte[] content = Files.readAllBytes(filePath);
-            String contentType = getContentType(path);
-
-            sendSuccessResponse(out, rawOut, contentType, content);
-
-        } catch (SecurityException e) {
-            handle403Error(out);
-        } catch (IOException e) {
-            handle404Error(out, rawOut);
+    public void serveFile(String path, Response res, OutputStream out) throws Exception {
+        if (path.equals("/")) {
+            path = "/index.html"; // Default
         }
-    }
 
-    private void handle404Error(PrintWriter out, OutputStream rawOut) {
-        try {
-            // Cambiar la resolución de la ruta del 404.html
-            Path errorPagePath = basePath.resolve("404.html").normalize();
+        Path filePath = resolveSafePath(path);
 
-            if (Files.exists(errorPagePath) && Files.isReadable(errorPagePath)) {
-                byte[] errorContent = Files.readAllBytes(errorPagePath);
-
-                out.print("HTTP/1.1 404 Not Found\r\n");
-                out.print("Content-Type: text/html\r\n");
-                out.print("Content-Length: " + errorContent.length + "\r\n");
-                out.print("\r\n");
-                out.flush();
-                rawOut.write(errorContent);
-                rawOut.flush();
+        if (!Files.exists(filePath) || !Files.isReadable(filePath)) {
+            Path errorPage = basePath.resolve("404.html").normalize();
+            if (Files.exists(errorPage)) {
+                byte[] errorContent = Files.readAllBytes(errorPage);
+                res.setStatusCode(404);
+                res.addHeader("Content-Type", "text/html; charset=UTF-8");
+                res.setBody(errorContent);
             } else {
-                sendPlainText404(out);
+                res.setStatusCode(404);
+                res.setBody("404 Not Found");
             }
-        } catch (Exception e) {
-            sendPlainText404(out);
+            res.send(out);
+            return;
         }
-    }
 
-    private void sendSuccessResponse(PrintWriter out, OutputStream rawOut,
-                                     String contentType, byte[] content) throws IOException {
-        out.print("HTTP/1.1 200 OK\r\n");
-        out.print("Content-Type: " + contentType + "\r\n");
-        out.print("Content-Length: " + content.length + "\r\n");
-        out.print("\r\n");
-        out.flush();
-        rawOut.write(content);
-        rawOut.flush();
-    }
+        byte[] content = Files.readAllBytes(filePath);
+        String contentType = getContentType(path);
 
-    private void sendPlainText404(PrintWriter out) {
-        out.print("HTTP/1.1 404 Not Found\r\n");
-        out.print("Content-Type: text/plain\r\n");
-        out.print("\r\n");
-        out.print("404 Not Found - The requested resource was not found");
-        out.flush();
-    }
-
-    private void handle403Error(PrintWriter out) {
-        out.print("HTTP/1.1 403 Forbidden\r\n");
-        out.print("Content-Type: text/plain\r\n");
-        out.print("\r\n");
-        out.print("403 Forbidden - Access denied");
-        out.flush();
+        res.addHeader("Content-Type", contentType + (contentType.startsWith("text/") ? "; charset=UTF-8" : ""));
+        res.setBody(content);
+        res.send(out);
     }
 
     private Path resolveSafePath(String requestPath) throws SecurityException {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mycompany.httpserver.WebServerTest" time="1.182" tests="12" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mycompany.httpserver.WebServerTest" time="1.268" tests="18" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\taller 1\httpserver\target\test-classes;C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\taller 1\httpserver\target\classes;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\emily\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\emily\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\emily\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;"/>
+    <property name="java.class.path" value="C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\Microframeworks-WEB\httpserver\target\test-classes;C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\Microframeworks-WEB\httpserver\target\classes;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\emily\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\emily\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\emily\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CO"/>
     <property name="sun.boot.library.path" value="C:\workspace\jdk-17.0.12_windows-x64_bin\jdk-17.0.12\bin"/>
-    <property name="sun.java.command" value="C:\Users\emily\AppData\Local\Temp\surefire9887808655359528151\surefirebooter-20250819013944312_3.jar C:\Users\emily\AppData\Local\Temp\surefire9887808655359528151 2025-08-19T01-39-43_931-jvmRun1 surefire-20250819013944312_1tmp surefire_0-20250819013944312_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\emily\AppData\Local\Temp\surefire12408689620788377974\surefirebooter-20250825221540276_3.jar C:\Users\emily\AppData\Local\Temp\surefire12408689620788377974 2025-08-25T22-15-39_621-jvmRun1 surefire-20250825221540276_1tmp surefire_0-20250825221540276_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\taller 1\httpserver\target\test-classes;C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\taller 1\httpserver\target\classes;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\emily\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\emily\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\emily\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\Microframeworks-WEB\httpserver\target\test-classes;C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\Microframeworks-WEB\httpserver\target\classes;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\emily\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\emily\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\emily\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\emily\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\emily"/>
     <property name="user.language" value="es"/>
@@ -25,12 +25,12 @@
     <property name="java.version.date" value="2024-07-16"/>
     <property name="java.home" value="C:\workspace\jdk-17.0.12_windows-x64_bin\jdk-17.0.12"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\taller 1\httpserver"/>
+    <property name="basedir" value="C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\Microframeworks-WEB\httpserver"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\emily\AppData\Local\Temp\surefire9887808655359528151\surefirebooter-20250819013944312_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\emily\AppData\Local\Temp\surefire12408689620788377974\surefirebooter-20250825221540276_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.12+8-LTS-286"/>
@@ -44,7 +44,7 @@
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\emily\AppData\Local\Temp\"/>
     <property name="java.version" value="17.0.12"/>
-    <property name="user.dir" value="C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\taller 1\httpserver"/>
+    <property name="user.dir" value="C:\Users\emily\OneDrive\Documentos\Octavo Semestre\AREP\Tercio 1\Microframeworks-WEB\httpserver"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
@@ -56,20 +56,78 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldLoadRestPost" classname="com.mycompany.httpserver.WebServerTest" time="0.082">
-    <system-out><![CDATA[Server started on port 35000
+  <testcase name="shouldLoadHelloRouteWithQueryParam" classname="com.mycompany.httpserver.WebServerTest" time="0.064">
+    <system-out><![CDATA[Server started on port 8080
 Servidor iniciado
+PATH RECIBIDO: /api/hello
 ]]></system-out>
   </testcase>
-  <testcase name="shouldLoadStaticFileCss" classname="com.mycompany.httpserver.WebServerTest" time="0.008"/>
-  <testcase name="notShouldLoadStaticFileCss" classname="com.mycompany.httpserver.WebServerTest" time="0.005"/>
-  <testcase name="shouldLoadRestGet" classname="com.mycompany.httpserver.WebServerTest" time="0.003"/>
-  <testcase name="notShouldLoadStaticFileJs" classname="com.mycompany.httpserver.WebServerTest" time="0.003"/>
-  <testcase name="notShouldLoadStaticImageJPG" classname="com.mycompany.httpserver.WebServerTest" time="0.002"/>
-  <testcase name="notShouldLoadStaticImagePNG" classname="com.mycompany.httpserver.WebServerTest" time="0.002"/>
-  <testcase name="notShouldLoadStaticFileHtml" classname="com.mycompany.httpserver.WebServerTest" time="0.01"/>
-  <testcase name="shouldLoadStaticFileJs" classname="com.mycompany.httpserver.WebServerTest" time="0.003"/>
-  <testcase name="shouldLoadStaticImageJPG" classname="com.mycompany.httpserver.WebServerTest" time="0.002"/>
-  <testcase name="shouldLoadStaticImagePNG" classname="com.mycompany.httpserver.WebServerTest" time="0.006"/>
-  <testcase name="shouldLoadStaticFileHtml" classname="com.mycompany.httpserver.WebServerTest" time="0.003"/>
+  <testcase name="shouldLoadRestPost" classname="com.mycompany.httpserver.WebServerTest" time="0.007">
+    <system-out><![CDATA[PATH RECIBIDO: /api/hellopost
+]]></system-out>
+  </testcase>
+  <testcase name="shouldReturnCorrectValueFromPiRoute" classname="com.mycompany.httpserver.WebServerTest" time="0.008">
+    <system-out><![CDATA[PATH RECIBIDO: /api/pi
+]]></system-out>
+  </testcase>
+  <testcase name="shouldLoadPiRoute" classname="com.mycompany.httpserver.WebServerTest" time="0.005">
+    <system-out><![CDATA[PATH RECIBIDO: /api/pi
+]]></system-out>
+  </testcase>
+  <testcase name="shouldReturn404ForUnregisteredRoute" classname="com.mycompany.httpserver.WebServerTest" time="0.018">
+    <system-out><![CDATA[PATH RECIBIDO: /unknown/route
+]]></system-out>
+  </testcase>
+  <testcase name="shouldLoadStaticFileCss" classname="com.mycompany.httpserver.WebServerTest" time="0.005">
+    <system-out><![CDATA[PATH RECIBIDO: /styles.css
+]]></system-out>
+  </testcase>
+  <testcase name="notShouldLoadStaticFileCss" classname="com.mycompany.httpserver.WebServerTest" time="0.003">
+    <system-out><![CDATA[PATH RECIBIDO: /nonexistent.css
+]]></system-out>
+  </testcase>
+  <testcase name="shouldServeStaticFileFromCustomDirectory" classname="com.mycompany.httpserver.WebServerTest" time="0.006">
+    <system-out><![CDATA[PATH RECIBIDO: /index.html
+]]></system-out>
+  </testcase>
+  <testcase name="shouldReturnCorrectResponseFromHelloRoute" classname="com.mycompany.httpserver.WebServerTest" time="0.003">
+    <system-out><![CDATA[PATH RECIBIDO: /api/hello
+]]></system-out>
+  </testcase>
+  <testcase name="shouldLoadRestGet" classname="com.mycompany.httpserver.WebServerTest" time="0.002">
+    <system-out><![CDATA[PATH RECIBIDO: /api/hello
+]]></system-out>
+  </testcase>
+  <testcase name="notShouldLoadStaticFileJs" classname="com.mycompany.httpserver.WebServerTest" time="0.004">
+    <system-out><![CDATA[PATH RECIBIDO: /nonexistent.js
+]]></system-out>
+  </testcase>
+  <testcase name="notShouldLoadStaticImageJPG" classname="com.mycompany.httpserver.WebServerTest" time="0.002">
+    <system-out><![CDATA[PATH RECIBIDO: /nonexistent.jpg
+]]></system-out>
+  </testcase>
+  <testcase name="notShouldLoadStaticImagePNG" classname="com.mycompany.httpserver.WebServerTest" time="0.004">
+    <system-out><![CDATA[PATH RECIBIDO: /nonexistent.png
+]]></system-out>
+  </testcase>
+  <testcase name="notShouldLoadStaticFileHtml" classname="com.mycompany.httpserver.WebServerTest" time="0.003">
+    <system-out><![CDATA[PATH RECIBIDO: /nonexistent.html
+]]></system-out>
+  </testcase>
+  <testcase name="shouldLoadStaticFileJs" classname="com.mycompany.httpserver.WebServerTest" time="0.004">
+    <system-out><![CDATA[PATH RECIBIDO: /script.js
+]]></system-out>
+  </testcase>
+  <testcase name="shouldLoadStaticImageJPG" classname="com.mycompany.httpserver.WebServerTest" time="0.012">
+    <system-out><![CDATA[PATH RECIBIDO: /koala.jpg
+]]></system-out>
+  </testcase>
+  <testcase name="shouldLoadStaticImagePNG" classname="com.mycompany.httpserver.WebServerTest" time="0.005">
+    <system-out><![CDATA[PATH RECIBIDO: /img.png
+]]></system-out>
+  </testcase>
+  <testcase name="shouldLoadStaticFileHtml" classname="com.mycompany.httpserver.WebServerTest" time="0.004">
+    <system-out><![CDATA[PATH RECIBIDO: /index.html
+]]></system-out>
+  </testcase>
 </testsuite>

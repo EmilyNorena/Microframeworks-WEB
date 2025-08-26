@@ -1,9 +1,13 @@
 package com.mycompany.httpserver;
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import com.mycompany.httpserver.WebServer;
@@ -15,18 +19,22 @@ import com.mycompany.httpserver.WebServer;
 
 public class WebServerTest {
 
-    private static final String URL = "http://localhost:35000/";
+    private static final String URL = "http://localhost:8080/";
     private static WebServer server;
     private static Thread serverThread;
 
     @BeforeAll
     public static void setUp() {
         try {
-            server = new WebServer();
+            Router.get("/api/hello", (req, res) -> "hello " + req.getValues("name"));
+            Router.get("/api/pi", (req, resp) -> String.valueOf(Math.PI));
+            server = new WebServer("target/classes/webroot");
             serverThread = new Thread(() -> {
                 try {
                     server.start();
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
@@ -110,53 +118,108 @@ public class WebServerTest {
         testPostRequest(endpoint, "name=test", 200);
     }
 
-    private void testFileRequest(String file, int expectedCode) {
-        try {
-            URL requestUrl = new URL(URL + file);
-            HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
-            connection.setRequestMethod("GET");
-            int responseCode = connection.getResponseCode();
-            assertEquals(expectedCode, responseCode);
+    @Test
+    public void shouldLoadHelloRouteWithQueryParam() throws Exception {
+        testEndpointRequest("api/hello?name=Pedro", 200);
+    }
+
+    @Test
+    public void shouldReturnCorrectResponseFromHelloRoute() throws Exception {
+        String response = getResponseBody("api/hello?name=Pedro");
+        assertTrue(response.contains("hello Pedro"));
+    }
+
+    @Test
+    public void shouldLoadPiRoute() throws Exception {
+        testEndpointRequest("api/pi", 200);
+    }
+
+    @Test
+    public void shouldReturnCorrectValueFromPiRoute() throws Exception {
+        String response = getResponseBody("api/pi");
+        assertEquals(String.valueOf(Math.PI), response);
+    }
+
+    @Test
+    public void shouldServeStaticFileFromCustomDirectory() throws Exception {
+        String file = "index.html";
+        testFileRequest(file, 200);
+    }
+
+    @Test
+    public void shouldReturn404ForUnregisteredRoute() throws Exception {
+        testEndpointRequest("unknown/route", 404);
+    }
+
+    private String getResponseBody(String endpoint) throws IOException {
+        URL requestUrl = new URL(URL + endpoint);
+        HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+        connection.setRequestMethod("GET");
+        
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            StringBuilder response = new StringBuilder();
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            return response.toString();
+        } finally {
             connection.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    private void testEndpointRequest(String endpoint, int expectedCode) {
+    private void testFileRequest(String file, int expectedCode) throws IOException {
+        URL requestUrl = new URL(URL + file);
+        HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+        connection.setRequestMethod("GET");
+        
         try {
-            URL requestUrl = new URL(URL + endpoint);
-            HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
-            connection.setRequestMethod("GET");
             int responseCode = connection.getResponseCode();
             assertEquals(expectedCode, responseCode);
+        } finally {
             connection.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    private void testPostRequest(String endpoint, String params, int expectedCode) {
+    private void testEndpointRequest(String endpoint, int expectedCode) throws IOException {
+        URL requestUrl = new URL(URL + endpoint);
+        HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+        connection.setRequestMethod("GET");
+        
         try {
-            URL requestUrl = new URL(URL + endpoint);
-            HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
+            int responseCode = connection.getResponseCode();
+            assertEquals(expectedCode, responseCode);
+        } finally {
+            connection.disconnect();
+        }
+    }
+
+    private void testPostRequest(String endpoint, String params, int expectedCode) throws IOException {
+        URL requestUrl = new URL(URL + endpoint);
+        HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        
+        try {
             connection.getOutputStream().write(params.getBytes());
             int responseCode = connection.getResponseCode();
             assertEquals(expectedCode, responseCode);
+        } finally {
             connection.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
     @AfterAll
     public static void tearDown() {
         try {
-            server.stop();
-            serverThread.join();
-            System.out.println("Server close");
+            if (server != null) {
+                server.stop();
+            }
+            if (serverThread != null) {
+                serverThread.join(3000);
+            }
+            System.out.println("Server closed");
         } catch (Exception e) {
             e.printStackTrace();
         }
