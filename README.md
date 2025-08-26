@@ -189,13 +189,18 @@ De esta forma, el servidor puede manejar tanto contenido estático (HTML, CSS, J
 
 ## Diagrama de clases
 
-<img width="1327" height="575" alt="image" src="https://github.com/user-attachments/assets/599d0b5a-7a75-45f1-ab9e-b43e88b52424" />
+<img width="1310" height="751" alt="image" src="https://github.com/user-attachments/assets/5c19ddf2-33ab-4171-ae68-878e08f08740" />
+
 
 ### Relaciones entre clases
 - WebServer -> ServerSocket: La clase WebServer utiliza ServerSocket para escuchar conexiones entrantes de clientes en un puerto específico.
 - WebServer -> RequestHandler: Por cada cliente que se conecta, WebServer crea un objeto RequestHandler. RequestHandler depende de WebServer para su creación, pero no forma parte permanente del WebServer.
-- RequestHandler -> FileHanlder: RequestHandler utiliza FileHandler para servir archivos estáticos solicitados por el cliente.
+- RequestHandler -> FileHandler: RequestHandler utiliza FileHandler para servir archivos estáticos solicitados por el cliente.
 - RequestHandler -> ApiHandler: RequestHandler utiliza ApiHandler para procesar solicitudes a endpoints de la API.
+- RequestHandler -> Request: RequestHandler crea un Request a partir de la petición y los parámetros definidos.
+- RequestHandler -> Response: RequestHandler inicializa un Response, el cual contiene código de estados, cabecera y cuerpo.
+- RequestHandler -> Router: RequestHandler consulta al Router para saber si existe un Route registrado para el path solicitado.
+- Router -> Route: Router mantiene un mapa de rutas y las asocia a objetos Route, que son funciones lambda.
   
 ---
 
