@@ -103,9 +103,27 @@ Si buscas un recurso inexistente, verás esta página
 
 <img width="1907" height="919" alt="image" src="https://github.com/user-attachments/assets/1a3c89f6-2973-4dea-a9d9-d1dfa5ff6bd0" />
 
-
-
 ---
+
+## Ejemplo de uso
+Cómo un Desarrollador Web puede usar el Framework
+
+<img width="700" height="121" alt="image" src="https://github.com/user-attachments/assets/4684408a-68ae-4454-8694-1345416826a0" />
+
+Este fragmento de código configura un servidor web en Java con soporte para archivos estáticos y servicios REST. 
+- Los archivos estáticos se sirven desde la carpeta target/classes/webroot (o desde la ruta definida en staticFilesPath).
+- Se exponen endpoints REST con el método GET a través de la clase Router:
+    - /api/helloworld → retorna el texto fijo "hello world!".
+    - /api/hello?name=Pedro → retorna un saludo personalizado con el valor recibido por parámetro ("hello Pedro").
+    - /api/pi → retorna el valor numérico de π (3.141592653589793).
+
+De esta forma, el servidor puede manejar tanto contenido estático (HTML, CSS, JS) como peticiones dinámicas mediante endpoints REST.
+
+<img width="493" height="303" alt="image" src="https://github.com/user-attachments/assets/fd67dd6f-0c5d-4d1b-aefb-984b0f6c6fce" />
+<img width="505" height="303" alt="image" src="https://github.com/user-attachments/assets/2baa6d44-6ffc-4aaf-8a8a-c3898523e58e" />
+
+
+
 
 ## Arquitectura
 <img width="860" height="746" alt="image" src="https://github.com/user-attachments/assets/98565b94-b48e-498c-a8dc-3118c373272b" />
@@ -182,5 +200,17 @@ Si buscas un recurso inexistente, verás esta página
 11. <pre> shouldLoadRestGet </pre> Prueba un endpoint REST con método GET, esperando respuesta exitosa (200).
 
 12. <pre>shouldLoadRestPost </pre> Verifica el comportamiento de un endpoint REST con método POST, esperando respuesta exitosa (200).
+
+13. <pre>shouldLoadHelloRouteWithQueryParam </pre> Verifica que el endpoint /api/hello con parámetro name=Pedro se cargue correctamente y devuelva estado 200 OK.
+
+14. <pre>shouldReturnCorrectResponseFromHelloRoute </pre> Comprueba que la respuesta del endpoint /api/hello?name=Pedro contenga el saludo personalizado "hello Pedro".
+
+15. <pre>shouldLoadPiRoute </pre> Valida que el endpoint /api/pi responda correctamente con estado 200 OK.
+
+16. <pre>shouldReturnCorrectValueFromPiRoute </pre> Verifica que la respuesta del endpoint /api/pi coincida exactamente con el valor de Math.PI.
+
+17. <pre>shouldServeStaticFileFromCustomDirectory </pre> Comprueba que se sirvan archivos estáticos desde el directorio configurado, por ejemplo index.html, devolviendo 200 OK.
+
+18. <pre>shouldReturn404ForUnregisteredRoute </pre> Asegura que cualquier ruta no registrada (como unknown/route) devuelva correctamente un error 404 Not Found.
 
 
